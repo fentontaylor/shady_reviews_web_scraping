@@ -5,7 +5,7 @@ def mock_requests_get(url):
             self.status_code = status_code
 
     if url == 'http://test.com/reviews/page_1':
-        with open('tests/fixtures/reviews_page_1.html') as f:
+        with open('tests/fixtures/mock_reviews_page_1.html') as f:
             return MockResponse(f.read(), 200)
 
     return MockResponse(None, 404)
