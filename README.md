@@ -2,7 +2,7 @@
 There are some potentially fake, overly positive reviews on a dealer's page. This script will scrape the first 5 pages of reviews, perform sentiment analysis on each review text, and display the 3 most likely problematic entries.
 
 ## How To Run
-Prereuqisites: Python 3.7, virtualenv
+Prerequisites: Python 3.7, virtualenv
 
 ### Setup
 
@@ -18,4 +18,18 @@ $ pip install -r requirements.txt
 
 ```bash
 $ python run.py
+```
+
+### Run Tests
+
+#### Basic
+Will run all tests and print coverage report in console.
+```bash
+$ nose2
+```
+
+#### HTML Coverage Report
+Will run tests, generate html report, and open in browser.
+```bash
+$ nose2 && coverage html && open htmlcov/index.html
 ```
