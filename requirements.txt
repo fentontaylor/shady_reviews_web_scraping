@@ -1,0 +1,4 @@
+beautifulsoup4
+coverage
+nose2
+requests
