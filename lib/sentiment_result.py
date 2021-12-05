@@ -3,3 +3,6 @@ class SentimentResult:
         self.text = text
         self.sentiment = sentiment
         self.score = score
+
+    def __str__(self):
+        return f"TEXT: {self.text}\nSENTIMENT: {self.sentiment}\nSCORE: {self.score}"
