@@ -1,10 +1,53 @@
 # Shady Reviews Web Scraping
-There are some potentially fake, overly positive reviews on a dealer's page. This script will scrape the first 5 pages of reviews, perform sentiment analysis on each review text, and display the 3 most likely problematic entries.
+There are some potentially fake, overly positive reviews on a dealer's page on dealerrater.com. This script will scrape the first 5 pages of reviews for that dealer, perform sentiment analysis on each review text, and display the 3 most "overly positive" entries.
 
-## How To Run
+The criteria for sorting the reviews is the results from IBM Watson's Natural Language Understanding API. Watson analyzed the text, performing what's known as "sentiment analysis" to determine if the given text is "postive" or "negative", and assigns a score to represent the magnitude of such a label. Sample analyses can be seen below.
+
+The script in this repo uses the results of these analyses to filter only "positive" reviews and sort them according to the sentiment score. This way, we can determine the review entries that are most likely to be "overly positive" and therefore potentially fake.
+
+#### Note:
+Between 12/5/2021 evening and 12/6/2021 morning, the HTML structure of the reviews pages on dealerrater.com changed. You can see evidence of that change in commit history. The first 5 pages of HTML can be found in `tests/fixtures` directory to show what the HTML was on morning of 12/6. If you get an error running the script, please refer to the tests as proof of working code as of that time. 
+
+### Sample Watson Client Responses
+
+#### Negative Sentiment
+```py
+{
+  'usage': {
+    'text_units': 1,
+    'text_characters': 149,
+    'features': 1
+  },
+  'sentiment': {
+    'document': {
+      'score': -0.344922,
+      'label': 'negative'
+    }
+  },
+  'language': 'en'
+}
+```
+
+#### Positive Sentiment
+```py
+{
+  'usage': {
+    'text_units': 1,
+    'text_characters': 112,
+    'features': 1
+  },
+  'sentiment': {
+    'document': {
+      'score': 0.974371,
+      'label': 'positive'
+    }
+  },
+  'language': 'en'
+}
+```
+
+## Setup
 Prerequisites: Python 3.7, virtualenv
-
-### Setup
 
 ```bash
 $ git clone https://github.com/fentontaylor/shady_reviews_web_scraping.git
@@ -17,13 +60,19 @@ $ pip install -r requirements.txt
 ### IBM Watson NLP credentials
 1. Go to [IBM Watson NLP](https://www.ibm.com/cloud/watson-natural-language-understanding) page, and follow the steps to create a free account.
 2. Once you are on your main dashboard page, click the "Create" button in the right sidebar to create your instance.
-3. You should now be on your instance dashboard. Click "Manage" to view your credentials.
-4. In the shady_reviews_web_scraping repo, create a .env file with 2 key/value pairs:
+<img width="300" alt="Screen Shot 2021-12-06 at 11 17 30 AM" src="https://user-images.githubusercontent.com/18686466/144902073-9d0e8ae7-ebed-4d42-b29e-a83498fe5498.png">
+
+4. You should now be on your instance dashboard. Click "Manage" to view/copy your credentials.
+<img width="600" alt="Screen Shot 2021-12-06 at 11 16 59 AM" src="https://user-images.githubusercontent.com/18686466/144902237-858d998f-1039-4ec4-862d-32518daf7de6.png">
+
+5. In the shady_reviews_web_scraping repo, create a `.env` file with 2 key/value pairs:
+
 ```
-WATSON_API_KEY={your API key}
-WATSON_URL={your unique url}
+WATSON_API_KEY={your Watson API key}
+WATSON_URL={your unique Watson url}
 ```
 
+## How To Run
 ### Run Main Script
 Execute the following command to run the script. You should see progress printed to the console, and finally results similar to below:
 
@@ -63,20 +112,3 @@ Will run tests, generate html report, and open in browser.
 $ nose2 && coverage html && open htmlcov/index.html
 ```
 
-## Sample Watson Client Response
-```py
-{
-  'usage': {
-    'text_units': 1,
-    'text_characters': 149,
-    'features': 1
-  },
-  'sentiment': {
-    'document': {
-      'score': -0.344922,
-      'label': 'negative'
-    }
-  },
-  'language': 'en'
-}
-```
