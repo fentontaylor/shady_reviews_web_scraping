@@ -1,4 +1,6 @@
 beautifulsoup4
 coverage
+ibm-watson
 nose2
+python-dotenv
 requests
