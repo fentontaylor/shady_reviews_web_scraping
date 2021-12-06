@@ -6,7 +6,8 @@ The criteria for sorting the reviews is the results from IBM Watson's Natural La
 The script in this repo uses the results of these analyses to filter only "positive" reviews and sort them according to the sentiment score. This way, we can determine the review entries that are most likely to be "overly positive" and therefore potentially fake.
 
 #### Note:
-Between 12/5/2021 evening and 12/6/2021 morning, the HTML structure of the reviews pages on dealerrater.com changed. You can see evidence of that change in commit history. The first 5 pages of HTML can be found in `tests/fixtures` directory to show what the HTML was on morning of 12/6. If you get an error running the script, please refer to the tests as proof of working code as of that time. 
+- I chose to do this challenge with Python because it is a language that I have very limited experience with. I wanted to showcase my ability to apply my knowledge  of programming principles and test-driven development in a different paradigm, but still complete the task at a high level of competency.
+- Between 12/5/2021 evening and 12/6/2021 morning, the HTML structure of the reviews pages on dealerrater.com changed. You can see evidence of that change in commit history. The first 5 pages of HTML can be found in `tests/fixtures` directory to show what the HTML was on morning of 12/6. If you get an error running the script, please refer to the tests as proof of working code as of that time. 
 
 ### Sample Watson Client Responses
 
