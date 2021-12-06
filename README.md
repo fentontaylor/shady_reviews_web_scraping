@@ -14,6 +14,8 @@ $ source venv/bin/activate
 $ pip install -r requirements.txt
 ```
 
+TODO: Add Watson setup instructions
+
 ### Run Main Script
 
 ```bash
@@ -32,4 +34,22 @@ $ nose2
 Will run tests, generate html report, and open in browser.
 ```bash
 $ nose2 && coverage html && open htmlcov/index.html
+```
+
+## Sample Watson Client Response
+```py
+{
+  'usage': {
+    'text_units': 1,
+    'text_characters': 149,
+    'features': 1
+  },
+  'sentiment': {
+    'document': {
+      'score': -0.344922,
+      'label': 'negative'
+    }
+  },
+  'language': 'en'
+}
 ```
