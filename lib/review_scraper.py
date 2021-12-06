@@ -27,5 +27,4 @@ class ReviewScraper:
                 review = title + ' ' + content
                 cleaned_text = re.sub("\s+", ' ', review.replace('\n', ' ')).strip()
                 if review: review_contents.append(cleaned_text)
-        print(review_contents)
         return review_contents
