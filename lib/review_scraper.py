@@ -20,8 +20,12 @@ class ReviewScraper:
             review_entries = BeautifulSoup(self.page_content, 'html.parser').find(
                 'div', id='reviews').find_all('div', class_='review-entry')
             for review_entry in review_entries:
-                review: str = review_entry.find(
-                    'p', class_='review-content').text
+                title: str = review_entry.find(
+                    'span', class_='review-title').text
+                content: str = review_entry.find(
+                    'span', class_='review-whole').text
+                review = title + ' ' + content
                 cleaned_text = re.sub("\s+", ' ', review.replace('\n', ' ')).strip()
                 if review: review_contents.append(cleaned_text)
+        print(review_contents)
         return review_contents
