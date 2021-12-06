@@ -1,5 +1,4 @@
-def run():
-    print('hello world')
+from lib.runner import run
 
 if __name__ == '__main__':
     run()
